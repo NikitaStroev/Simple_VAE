@@ -10,8 +10,8 @@ BATCH_SIZE = 64     # number of data points in each batch
 N_EPOCHS = 10       # times to run the model on complete data
 INPUT_DIM = 28 * 28 # size of each input
 HIDDEN_DIM = 256    # hidden dimension
-LATENT_DIM = 20     # latent vector dimension
-lr = 1e-3           # learning rate
+LATENT_DIM = 24     # latent vector dimension
+lr = 0.5e-3           # learning rate
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -52,7 +52,7 @@ class Encoder(nn.Module):
     def forward(self, x):
         # x is of shape [batch_size, input_dim]
 
-        hidden = F.relu(self.linear(x))
+        hidden = F.softmax(self.linear(x))
         # hidden is of shape [batch_size, hidden_dim]
         z_mu = self.mu(hidden)
         # z_mu is of shape [batch_size, latent_dim]
