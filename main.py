@@ -193,9 +193,10 @@ def test():
 
     return test_loss
 
+def main():
+
     best_test_loss = float('inf')
 
-def main():
     for e in range(N_EPOCHS):
 
         train_loss = train()
